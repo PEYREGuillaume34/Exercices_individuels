@@ -28,6 +28,11 @@ function maxDaysInMonth(month, year) {
 function isLeapYear(year) {
   return (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
 }
+console.log(isValidDate("03/04/2001")); // true
+console.log(isValidDate("31/11/2001")); // false
+console.log(isValidDate("29/02/2024")); // true
+console.log(isValidDate("29/02/2023")); // false
+console.log(isValidDate("03/14/2001")); // false
 
 
 
@@ -39,6 +44,11 @@ function isPalindrome(dateStr) {
   const reversedStr = cleanStr.split("").reverse().join("");
   return cleanStr === reversedStr;
 }
+console.log(isPalindrome("11/02/2011")); // true
+console.log(isPalindrome("03/04/2001")); // false
+console.log(isPalindrome("22/02/2022")); // true
+console.log(isPalindrome("31/04/2022")); // false
+
 
 
 // ETAPE 03
