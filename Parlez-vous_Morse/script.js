@@ -90,7 +90,7 @@ const morseToLatin = {
 function getMorseCharacterList(text){
 	return text.split(" ");
 }
-console.log(getMorseCharacterList('--','.--.'));
+console.log(getMorseCharacterList('F'));
 
 
 function translateMorseCharacter(caractere){
@@ -101,15 +101,20 @@ console.log(translateMorseCharacter('-..'));
 
 
 function decode(text){
-let tableau3 = getMorseCharacterList(text)
-
+	let motsMorse = text.split(" / ");
 	let resultat = []
-	for (let element of tableau3){
-		let mot = translateMorseCharacter(element)
-		resultat.push(mot)
-	}
-	return resultat.join(" ")
-	
+	for (let mot of motsMorse) {
+    let lettres = mot.split(" ");
+    // traduire chaque lettre ici...
+
+	let motLatin = [];
+	for (let lettreMorse of lettres) {
+    let lettre = translateMorseCharacter(lettreMorse);
+    motLatin.push(lettre);
 }
-console.log(decode('.--.','.--'));
+	resultat.push(motLatin.join(""));
+	}
+	return resultat.join(" ");
+}	
+console.log(decode('... .- ...-'));
 
