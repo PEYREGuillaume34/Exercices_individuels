@@ -1,39 +1,4 @@
 
-// //  Function qui passe de Index à Order
-
-// function enterName() {
-//     document.querySelector('#validate').addEventListener('click', (e) => {
-//       e.preventDefault();
-
-//       let prenom = document.querySelector("#inputName").value;
-
-
-//       if (prenom.length === 0) {
-//         document.querySelector('.error-message').style.display = 'block';
-//       } else {
-//         window.location.href = "pageOrder.html";
-
-//       }
-//     });
-//   }
-
-//   enterName()
-
-
-
-
-//  async function fetchMenus() { 
-//       try {        
-//       const res = await fetch(`http://localhost:3000/menu`);        
-//       const menus = await res.json();                        
-//       console.log(menus)      } 
-//       catch (err) {        
-//       console.error("Erreur :", err);      
-//       }    
-//       }
-
-
-
 // front.js
 
 const validateBtn = document.querySelector("#validate");

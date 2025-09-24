@@ -12,7 +12,7 @@ const sql = postgres(process.env.DATABASE_URL,{
 
 async function getMenus(){
     try {
-    const menu = await sql `SELECT * FROM menus`;
+    const menu = await sql `SELECT plate_name, description, image FROM menus`;
     console.log(menu);
     }
     catch (err){
