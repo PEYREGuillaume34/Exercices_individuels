@@ -20,7 +20,7 @@ async function getMenus(){
     }
 }
 
-getMenu();
+getMenus();
 
 const app = express();
 
