@@ -105,10 +105,14 @@ function displayMenus(menus) {
     `;
 
     // Gestion du clic sur "commander"
-    card.querySelector(".command").addEventListener("click", async () => {
-      await commanderPlat(plat);
-      window.location.href = "pagePlates.html";
-    });
+card.querySelector(".command").addEventListener("click", async () => {
+  await commanderPlat(plat);
+  // Stocker l'ID du plat commandé pour la page suivante
+  localStorage.setItem("lastOrder", JSON.stringify(plat));
+  window.location.href = "pagePlates.html";
+});
+
+    
 
     orderDiv.appendChild(card);
   });
@@ -139,6 +143,25 @@ async function commanderPlat(plat) {
   }
 }
 
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const plateBlock = document.getElementById("plateBlock");
+  const lastOrder = localStorage.getItem("lastOrder");
+  if (!lastOrder) {
+    plateBlock.innerHTML = "<p>Aucune commande en cours.</p>";
+    return;
+  }
+  const plat = JSON.parse(lastOrder);
+  plateBlock.innerHTML = `
+    <h3>Suivi :</h3>
+    <div id="inProgress">
+      <h4>En préparation</h4>
+      <div>${plat.image || "🍽️"}</div>
+      <p>${plat.plate}</p>
+    </div>
+  `;
+});
 
 
 

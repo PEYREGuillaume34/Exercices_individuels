@@ -2,7 +2,25 @@ import express from "express";
 import menuList from "./menuList.json" with { type: "json" };
 import cors from "cors";
 
+import 'dotenv/config';
+import postgres from "postgres";
 
+
+const sql = postgres(process.env.DATABASE_URL,{
+    ssl:'require',
+ });
+
+async function getMenus(){
+    try {
+    const menu = await sql `SELECT * FROM menus`;
+    console.log(menu);
+    }
+    catch (err){
+        console.error('connexion échouée', err);
+    }
+}
+
+getMenu();
 
 const app = express();
 
