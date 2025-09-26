@@ -43,7 +43,7 @@ async function handleOrderPage() {
     const res = await fetch("http://localhost:3000/menu");
     const menus = await res.json();
     displayMenus(menus);
-    console.log("menus", menus);
+    console.log("MENU", menus);
   } catch (err) {
     console.error("Erreur lors du chargement du menu :", err);
     orderDiv.innerHTML += `<p style="color:red;">Impossible de charger le menu 😢</p>`;
@@ -63,21 +63,21 @@ function displayMenus(menus) {
     card.innerHTML = `
       <div>${plat.image || "🍽️"}</div>
       <span>
-        <h4>${plat.plate}</h4>
+        <h4>${plat.plate_name}</h4>
         <p>${plat.description}</p>
         <button class="command" data-id="${plat.id}">commander</button>
       </span>
     `;
 
     // Gestion du clic sur "commander"
-card.querySelector(".command").addEventListener("click", async () => {
-  await commanderPlat(plat);
-  // Stocker l'ID du plat commandé pour la page suivante
-  localStorage.setItem("lastOrder", JSON.stringify(plat));
-  window.location.href = "pagePlates.html";
-});
+    card.querySelector(".command").addEventListener("click", () => {
+      commanderPlat(plat)
+      // Stocker l'ID du plat commandé pour la page suivante
+      localStorage.setItem("lastOrder", JSON.stringify(plat));
+      //window.location.href = "pagePlates.html";
+    });
 
-    
+
 
     orderDiv.appendChild(card);
   });
@@ -92,7 +92,7 @@ async function commanderPlat(plat) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         id: plat.id,
-        plate: plat.plate,
+        plate_name: plat.plate_name,
         clientName: username,
       }),
     });
@@ -100,7 +100,7 @@ async function commanderPlat(plat) {
     const data = await resp.json();
     if (!data.ok) throw new Error(data.error);
     alert(`✅ ${data.message}`);
-    console.log('data',data)
+    console.log('data', data)
   }
   catch (e) {
     alert("❌ Impossible d'envoyer la commande.");
@@ -123,7 +123,7 @@ document.addEventListener("DOMContentLoaded", () => {
     <div id="inProgress">
       <h4>En préparation</h4>
       <div>${plat.image || "🍽️"}</div>
-      <p>${plat.plate}</p>
+      <p>${plat.plate_name}</p>
     </div>
   `;
 });
