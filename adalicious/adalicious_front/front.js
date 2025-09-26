@@ -74,7 +74,7 @@ function displayMenus(menus) {
       commanderPlat(plat)
       // Stocker l'ID du plat commandé pour la page suivante
       localStorage.setItem("lastOrder", JSON.stringify(plat));
-      //window.location.href = "pagePlates.html";
+      window.location.href = "pagePlates.html";
     });
 
 
